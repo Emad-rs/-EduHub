@@ -21,7 +21,7 @@ const registerSchema = z.object({
   password: z.string().min(6, "كلمة المرور يجب أن تكون 6 أحرف على الأقل"),
   confirmPassword: z.string(),
   role: z.enum(["student", "professor", "admin"], {
-    invalid_type_error: "يرجى اختيار نوع الحساب",
+    message: "يرجى اختيار نوع الحساب",
   }),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "كلمتا المرور غير متطابقتين",

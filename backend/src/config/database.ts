@@ -13,12 +13,24 @@ dotenv.config();
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: process.env.POSTGRES_HOST || "localhost",
-  port: parseInt(process.env.POSTGRES_PORT || "5432"),
-  username: process.env.POSTGRES_USER || "postgres",
-  password: process.env.POSTGRES_PASSWORD || "Emadsaad",
-  database: process.env.POSTGRES_DB || "MoDB",
-  synchronize: true, // ⚠️ True for dev only. False in production!
+  url: process.env.DATABASE_URL, // Use connection string if available (for production)
+  host: process.env.DATABASE_URL
+    ? undefined
+    : process.env.POSTGRES_HOST || "localhost",
+  port: process.env.DATABASE_URL
+    ? undefined
+    : parseInt(process.env.POSTGRES_PORT || "5432"),
+  username: process.env.DATABASE_URL
+    ? undefined
+    : process.env.POSTGRES_USER || "postgres",
+  password: process.env.DATABASE_URL
+    ? undefined
+    : process.env.POSTGRES_PASSWORD || "Emadsaad",
+  database: process.env.DATABASE_URL
+    ? undefined
+    : process.env.POSTGRES_DB || "MoDB",
+  synchronize: true, // Auto-create tables on the cloud database
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false, // Required for Neon/Render
   logging: false,
   entities: [User, Book, Post, Attendance, Activity, Quiz, Question],
   migrations: [path.join(__dirname, "../migrations/**/*.{ts,js}")],
