@@ -39,7 +39,7 @@ uvicorn app.main:app --reload
 ## 📁 هيكل المشروع الحالي
 
 ```
-Mo_pro/
+eduhub/
 ├── frontend/          # Next.js 14 App Router
 ├── backend/           # Express.js + TypeScript
 ├── ai-service/        # FastAPI + Python
@@ -56,7 +56,7 @@ Mo_pro/
 
 ## 🎯 الخطوة التالية المقترحة
 
-البيدء في تطوير **نظام المصادقة (Authentication)**:
+البدء في تطوير **نظام المصادقة (Authentication)**:
 
 1. إنشاء نموذج المستخدم (User Model) في Backend.
 2. إنشاء شاشة تسجيل الدخول في Frontend.
