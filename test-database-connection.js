@@ -224,6 +224,9 @@ async function runAllTests() {
   } else {
     log("\n⚠️  بعض قواعد البيانات الضرورية لا تعمل", "yellow");
     log("📝 راجع الأخطاء أعلاه وحاول إصلاحها", "yellow");
+
+    // Fail in automation/CI when required databases are unavailable
+    process.exitCode = 1;
   }
 
   log("\n═══════════════════════════════════════════════\n", "cyan");

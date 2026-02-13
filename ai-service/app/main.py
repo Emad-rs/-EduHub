@@ -38,7 +38,7 @@ async def upload_pdf(session_id: str, file: UploadFile = File(...)):
         pdf = PdfReader(io.BytesIO(content))
         text = ""
         for page in pdf.pages:
-            text += page.extract_text() + "\n"
+            text += (page.extract_text() or "") + "\n"
         
         # Limit text size for this demo
         pdf_context[session_id] = text[:5000] 
